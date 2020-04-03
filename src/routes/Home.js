@@ -1,14 +1,26 @@
-export default () => "Home";
-// import React from 'react';
+// export default () => "Home";
+import React, { useState } from 'react';
 
-// function Home() {
-//     return (
-//         <>
-//             <h1>To Do</h1>
-//             <form>
-//                 <input type="text" value={text} />
-//             </form>
-//             <ul></ul>
-//         </>
-//     )
-// }
+function Home() {
+    const [text, setText] = useSatate('');
+
+    function onChange(e) {
+        setText(e.target.value);
+    }
+
+    function onSubmit(e) {
+        e.preventDefault();
+        setText('');
+    }
+
+    return (
+        <>
+            <h1>To Do</h1>
+            <form onSubmit={onSubmit}>
+                <input type="text" value={text} onChange={onChange} />
+                <button>Add</button>
+            </form>
+            <ul></ul>
+        </>
+    )
+}
